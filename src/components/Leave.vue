@@ -110,7 +110,7 @@
         },
         loadData(pageNumber, pageSize){
           //发送get请求
-          axios.get(this.ProviderUrl + '/leave/page',{params:{"pageSize":pageSize,"pageNumber":pageNumber}})
+          axios.get(this.ProviderUrl + '/processLeave/page',{params:{"pageSize":pageSize,"pageNumber":pageNumber}})
             .then(res => {
               this.tatal = res.data.data.totalElements;
               this.tableData = res.data.data.content;
@@ -119,10 +119,21 @@
               console.log(error);
             });
         },
+        add(){
+          this.dialogFormVisible = false;
+          //发送post请求
+          axios.post(this.ProviderUrl + "/processLeave/newProcessLeave",this.form,{emulateJSON:true})
+            .then(res => {
+            this.loadData(this.pageNumber,this.pageSize);
+        })
+        .catch(error => {
+            console.log(error);
+        });
+        }
       },
       created: function () {
         this.loadData(this.pageNumber,this.pageSize);
-      }
+      },
     }
 </script>
 
@@ -133,5 +144,8 @@
 
   .el-table .success-row {
     background: #f0f9eb;
+  }
+  body > .el-container {
+    margin-bottom: 40px;
   }
 </style>
