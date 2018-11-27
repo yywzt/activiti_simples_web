@@ -329,14 +329,14 @@
               <li><a href="pages/layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> 折叠侧边栏</a></li>
             </ul>
           </li>
-          <li>
+          <!--<li>
             <a href="pages/widgets.html">
               <i class="fa fa-th"></i> <span>小部件</span>
               <span class="pull-right-container">
               <small class="label pull-right bg-green">新</small>
             </span>
             </a>
-          </li>
+          </li>-->
           <li class="treeview">
             <a href="#">
               <i class="fa fa-pie-chart"></i>
@@ -394,7 +394,7 @@
               <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i> 数据表格</a></li>
             </ul>
           </li>
-          <li>
+          <!--<li>
             <a href="pages/calendar.html">
               <i class="fa fa-calendar"></i> <span>日历</span>
               <span class="pull-right-container">
@@ -412,7 +412,7 @@
               <small class="label pull-right bg-red">5</small>
             </span>
             </a>
-          </li>
+          </li>-->
           <li class="treeview">
             <a href="#">
               <i class="fa fa-folder"></i> <span>示例</span>
@@ -432,7 +432,7 @@
               <li><a href="pages/examples/pace.html"><i class="fa fa-circle-o"></i> 页面加载进度</a></li>
             </ul>
           </li>
-          <li class="treeview">
+          <!--<li class="treeview">
             <a href="#">
               <i class="fa fa-share"></i> <span>多级菜单</span>
               <span class="pull-right-container">
@@ -464,12 +464,12 @@
               </li>
               <li><a href="#"><i class="fa fa-circle-o"></i> 层级1</a></li>
             </ul>
-          </li>
+          </li>-->
           <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>文档</span></a></li>
-          <li class="header">标签</li>
+          <!--<li class="header">标签</li>
           <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>重要</span></a></li>
           <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>警告</span></a></li>
-          <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>信息</span></a></li>
+          <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>信息</span></a></li>-->
         </ul>
       </section>
       <!-- /.sidebar -->
@@ -708,25 +708,25 @@
 <style>
 
   /*<!-- Bootstrap 3.3.7 -->*/
-  @import '../static/AdminLTE-2.4.5/bower_components/bootstrap/dist/css/bootstrap.min.css';
+  @import '../static/resources/bootstrap/dist/css/bootstrap.min.css';
   /*<!-- Font Awesome -->*/
-  @import '../static/AdminLTE-2.4.5/bower_components/font-awesome/css/font-awesome.min.css';
+  @import '../static/resources/font-awesome/css/font-awesome.min.css';
   /*<!-- Ionicons -->*/
-  @import '../static/AdminLTE-2.4.5/bower_components/Ionicons/css/ionicons.min.css';
+  @import '../static/resources/Ionicons/css/ionicons.min.css';
   /*<!-- Theme style -->*/
-  @import '../static/AdminLTE-2.4.5/dist/css/AdminLTE.min.css';
+  @import '../static/css/AdminLTE.min.css';
   /*<!-- AdminLTE 皮肤。从 css/skins 目录下选择一个皮肤，以减少负载，而不是下载所有皮肤。 -->*/
-  @import '../static/AdminLTE-2.4.5/dist/css/skins/_all-skins.min.css';
+  @import '../static/css/_all-skins.min.css';
   /*<!-- Morris chart -->*/
-  @import '../static/AdminLTE-2.4.5/bower_components/morris.js/morris.css';
+  @import '../static/css/morris.css';
   /*<!-- jvectormap -->*/
-  @import '../static/AdminLTE-2.4.5/bower_components/jvectormap/jquery-jvectormap.css';
+  @import '../static/css/jquery-jvectormap.css';
   /*<!-- Date Picker -->*/
-  @import '../static/AdminLTE-2.4.5/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css';
+  @import '../static/css/bootstrap-datepicker.min.css';
   /*<!-- Daterange picker -->*/
-  @import '../static/AdminLTE-2.4.5/bower_components/bootstrap-daterangepicker/daterangepicker.css';
+  @import '../static/css/daterangepicker.css';
   /*<!-- bootstrap wysihtml5 - text editor -->*/
-  @import '../static/AdminLTE-2.4.5/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css';
+  @import '../static/css/bootstrap3-wysihtml5.min.css';
   /*Google Font*/
   @import 'https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic';
   #app {
@@ -735,5 +735,11 @@
     -moz-osx-font-smoothing: grayscale;
     /*text-align: center;*/
     color: #2c3e50;
+  }
+  .main-footer{
+    position: fixed;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
   }
 </style>
