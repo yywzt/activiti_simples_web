@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Activiti from '@/components/Activiti'
+import Leave from '@/components/Leave'
 
 Vue.use(Router)
 
@@ -26,6 +27,11 @@ export default new Router({
       path: '/activiti',
       name: 'Activiti',
       component: Activiti,
+    },
+    {
+      path: '/leave',
+      name: 'Leave',
+      component: Leave,
     }
   ]
 })

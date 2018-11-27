@@ -317,6 +317,17 @@
           </li>
           <li class="treeview">
             <a href="#">
+              <i class="fa fa-dashboard"></i> <span>任务中心</span>
+              <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+            </a>
+            <ul class="treeview-menu">
+              <li class="active"><router-link to="/leave"><i class="fa fa-circle-o"></i>请假申请</router-link></li>
+            </ul>
+          </li>
+          <li class="treeview">
+            <a href="#">
               <i class="fa fa-files-o"></i>
               <span>布局设置</span>
               <span class="pull-right-container">

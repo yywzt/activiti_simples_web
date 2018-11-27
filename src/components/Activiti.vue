@@ -130,8 +130,6 @@
         return {
           visible: false ,
           tableData: [],
-          activeIndex: '1',
-          activeIndex2: '1',
           isCollapse: false,
           pageSizes: [10, 20, 50, 100],
           pageSize: 10,
@@ -149,9 +147,9 @@
       },
       methods: {
         tableRowClassName({row, rowIndex}) {
-          if (rowIndex === 1) {
+          if (rowIndex%2 === 0) {
             return 'warning-row';
-          } else if (rowIndex === 3) {
+          } else if (rowIndex%2 === 1) {
             return 'success-row';
           }
           return '';
@@ -272,10 +270,10 @@
       created: function () {
         this.loadData(this.pageNumber,this.pageSize);
       }
-    };
+    }
 </script>
 
-<style scoped>
+<style>
   /**{
     border: null;
     margin: 0;
