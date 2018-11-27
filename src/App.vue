@@ -31,7 +31,7 @@
                     <li><!-- start message -->
                       <a href="#">
                         <div class="pull-left">
-                          <img src="../static/AdminLTE-2.4.5/dist/img/user2-160x160.jpg" class="img-circle" alt="用户图像">
+                          <img src="../static/images/user2-160x160.jpg" class="img-circle" alt="用户图像">
                         </div>
                         <h4>
                           支持团队
@@ -44,7 +44,7 @@
                     <li>
                       <a href="#">
                         <div class="pull-left">
-                          <img src="../static/AdminLTE-2.4.5/dist/img/user3-128x128.jpg" class="img-circle" alt="用户图像">
+                          <img src="../static/images/user3-128x128.jpg" class="img-circle" alt="用户图像">
                         </div>
                         <h4>
                           AdminLTE 设计团队
@@ -56,7 +56,7 @@
                     <li>
                       <a href="#">
                         <div class="pull-left">
-                          <img src="../static/AdminLTE-2.4.5/dist/img/user4-128x128.jpg" class="img-circle" alt="用户图像">
+                          <img src="../static/images/user4-128x128.jpg" class="img-circle" alt="用户图像">
                         </div>
                         <h4>
                           Developers
@@ -68,7 +68,7 @@
                     <li>
                       <a href="#">
                         <div class="pull-left">
-                          <img src="../static/AdminLTE-2.4.5/dist/img/user3-128x128.jpg" class="img-circle" alt="用户图像">
+                          <img src="../static/images/user3-128x128.jpg" class="img-circle" alt="用户图像">
                         </div>
                         <h4>
                           销售部门
@@ -79,8 +79,9 @@
                     </li>
                     <li>
                       <a href="#">
+
                         <div class="pull-left">
-                          <img src="../static/AdminLTE-2.4.5/dist/img/user4-128x128.jpg" class="img-circle" alt="用户图像">
+                          <img src="../static/images/user4-128x128.jpg" class="img-circle" alt="用户图像">
                         </div>
                         <h4>评估人员
                           <small><i class="fa fa-clock-o"></i> 2 天前</small>
@@ -216,13 +217,13 @@
             <!-- User Account: style can be found in dropdown.less -->
             <li class="dropdown user user-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <img src="../static/AdminLTE-2.4.5/dist/img/user2-160x160.jpg" class="user-image" alt="用户图像">
+                <img src="../static/images/user2-160x160.jpg" class="user-image" alt="用户图像">
                 <span class="hidden-xs">Alexander Pierce</span>
               </a>
               <ul class="dropdown-menu">
                 <!-- User image -->
                 <li class="user-header">
-                  <img src="../static/AdminLTE-2.4.5/dist/img/user2-160x160.jpg" class="img-circle" alt="用户图像">
+                  <img src="../static/images/user2-160x160.jpg" class="img-circle" alt="用户图像">
 
                   <p>
                     Alexander Pierce - Web 开发人员
@@ -270,7 +271,7 @@
         <!-- Sidebar user panel -->
         <div class="user-panel">
           <div class="pull-left image">
-            <img src="../static/AdminLTE-2.4.5/dist/img/user2-160x160.jpg" class="img-circle" alt="用户图像">
+            <img src="../static/images/user2-160x160.jpg" class="img-circle" alt="用户图像">
           </div>
           <div class="pull-left info">
             <p>Alexander Pierce</p>
