@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Activiti from '@/components/Activiti'
 import Leave from '@/components/Leave'
+import Login from '@/components/Login'
 
 Vue.use(Router)
 
@@ -10,8 +11,8 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      name: 'Login',
+      component: Login
     },
     {
       path: '/index1',
@@ -20,8 +21,8 @@ export default new Router({
     },
     {
       path: '/index2',
-      name: 'index2',
-      component: {template:'<div>index2-hohohoho</div>'}
+      name: 'HelloWorld',
+      component: HelloWorld
     },
     {
       path: '/activiti',
