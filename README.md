@@ -1,30 +1,53 @@
-# vue_simples
 
-> A Vue.js project
 
-## Build Setup
+# activiti_simples_web**
 
-``` bash
-# install dependencies
-npm install
+后台接口见：https://github.com/yywzt/activiti_samples
 
-# serve with hot reload at localhost:8080
-npm run dev
+activiti流程中心前端页面
 
-# build for production with minification
-npm run build
+npm run dev启动项目
 
-# build for production and view the bundle analyzer report
-npm run build --report
 
-# run unit tests
-npm run unit
 
-# run e2e tests
-npm run e2e
+相关前端 页面展示
 
-# run all tests
-npm test
-```
+流程定义![微信截图_20181211155722](E:\Development\study\ideaWorkSpace\activiti_simples_web\md_img\微信截图_20181211155722.png)
 
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+流程定义设计
+
+![流程定义设计](E:\Development\study\ideaWorkSpace\activiti_simples_web\md_img\流程定义.png)
+
+
+
+请假单
+
+![请假单page](E:\Development\study\ideaWorkSpace\activiti_simples_web\md_img\请假单page.png)
+
+
+
+请假单申请![请假单申请](E:\Development\study\ideaWorkSpace\activiti_simples_web\md_img\请假单申请.png)
+
+
+
+代办任务
+
+![daiban](E:\Development\study\ideaWorkSpace\activiti_simples_web\md_img\daiban.png)
+
+
+
+审批任务
+
+![complete](E:\Development\study\ideaWorkSpace\activiti_simples_web\md_img\complete.png)
+
+
+
+历史批注
+
+![comment](E:\Development\study\ideaWorkSpace\activiti_simples_web\md_img\comment.png)
+
+
+
+流程执行过程
+
+![流程执行过程](E:\Development\study\ideaWorkSpace\activiti_simples_web\md_img\流程执行过程.png)

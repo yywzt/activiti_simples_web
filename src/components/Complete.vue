@@ -71,7 +71,7 @@
       </el-table>
     </el-dialog>
 
-    <el-dialog title="收货地址" :visible.sync="dialogFormVisible">
+    <el-dialog title="办理任务" :visible.sync="dialogFormVisible">
       <el-form :model="leaveForm">
         <el-input v-model="leaveForm.id" autocomplete="off" type="hidden"></el-input>
         <el-form-item label="请假人" :label-width="formLabelWidth">
