@@ -97,7 +97,7 @@
             :page-sizes="pageSizes"
             :page-size="pageSize"
             layout="total, sizes, prev, pager, next, jumper"
-            :total="tatal">
+            :total="tatals">
           </el-pagination>
         </div>
       </el-main>
@@ -134,7 +134,7 @@
           pageSizes: [10, 20, 50, 100],
           pageSize: 10,
           pageNumber: 1,
-          tatal: 0,
+          tatals: 0,
           dialogFormVisible: false,
           form: {
             modelName: '',
@@ -142,7 +142,6 @@
             modelDesc: ''
           },
           formLabelWidth: '120px',
-          ProviderUrl: 'http://localhost:18082',
         }
       },
       methods: {
@@ -174,9 +173,9 @@
         },
         loadData(pageNumber, pageSize){
           //发送get请求
-          axios.get(this.ProviderUrl + '/models/getModelLists',{params:{"pageSize":pageSize,"pageNumber":pageNumber}})
+          axios.get(this.GLOBAL.ProviderUrl + '/models/getModelLists',{params:{"pageSize":pageSize,"pageNumber":pageNumber}})
             .then(res => {
-              this.tatal = res.data.data.totalElements;
+              this.tatals = res.data.data.totalElements;
               this.tableData = res.data.data.content;
             })
             .catch(error=> {
@@ -187,7 +186,7 @@
         add(){
           this.dialogFormVisible = false;
           //发送post请求
-          axios.post(this.ProviderUrl + "/models/newModel",this.form,{emulateJSON:true})
+          axios.post(this.GLOBAL.ProviderUrl + "/models/newModel",this.form,{emulateJSON:true})
             .then(res => {
               this.loadData(this.pageNumber,this.pageSize);
             })
@@ -202,15 +201,10 @@
             //do something
             var id = row.id;
             //发送delete请求
-            axios.delete(this.ProviderUrl + "/models/del/" + id)
+            axios.delete(this.GLOBAL.ProviderUrl + "/models/del/" + id)
               .then(res => {
                 layer.close(index2);
-                layer.msg('删除好了啊', {
-                  icon: 1,
-                  time: 2000 //2秒关闭（如果不配置，默认是3秒）
-                }, function(){
-                  //do something
-                });
+                this.GLOBAL.laymsg('删除好了啊');
                 this.loadData(this.pageNumber,this.pageSize);
               })
               .catch(error => {
@@ -227,7 +221,7 @@
         //设计流程
         handleDesign(row){
           var modelId = row.activiModelId;
-          var frameSrc = this.ProviderUrl + "/index?modelId=" + modelId + "&t=" + new Date();
+          var frameSrc = this.GLOBAL.ProviderUrl + "/index?modelId=" + modelId + "&t=" + new Date();
           var index = layer.open({
             type: 2,
             title: '流程定义设计',
@@ -242,28 +236,18 @@
         handleDeployment(row){
           var modelId = row.activiModelId;
           var index2 = layer.load(0);
-          axios.post(this.ProviderUrl + '/models/deployment/'+modelId,{emulateJSON:true})
+          axios.post(this.GLOBAL.ProviderUrl + '/models/deployment/'+modelId,{emulateJSON:true})
             .then(res => {
               layer.close(index2);
               if(res.data.success) {
-                layer.msg('发布成功', {
-                  icon: 1,
-                  time: 2000 //2秒关闭（如果不配置，默认是3秒）
-                }, function () {
-                  //do something
-                });
+                this.GLOBAL.laymsg('发布成功');
               }else{
-                layer.msg(res.data.message, {
-                  icon: 1,
-                  time: 2000 //2秒关闭（如果不配置，默认是3秒）
-                }, function () {
-                  //do something
-                });
+                this.GLOBAL.laymsg(res.data.message);
               }
             })
             .catch(error => {
               layer.close(index2);
-              console.log(error);
+              console.log(error.response.data);
             });
         }
       },

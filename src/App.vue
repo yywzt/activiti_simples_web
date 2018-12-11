@@ -251,7 +251,7 @@
                     <a href="#" class="btn btn-default btn-flat">资料</a>
                   </div>
                   <div class="pull-right">
-                    <a href="#" class="btn btn-default btn-flat">退出</a>
+                    <a href="#" class="btn btn-default btn-flat" @click="logout()">退出</a>
                   </div>
                 </li>
               </ul>
@@ -312,18 +312,31 @@
             </span>
             </a>
             <ul class="treeview-menu">
-              <li class="active"><router-link to="/activiti"><i class="fa fa-circle-o"></i>模型列表</router-link></li>
+              <li class="active"><router-link to="/activiti"><i class="fa fa-circle-o"></i>流程定义</router-link></li>
+              <li class="active"><router-link to="/monitor"><i class="fa fa-circle-o"></i>流程监控</router-link></li>
             </ul>
           </li>
           <li class="treeview">
             <a href="#">
-              <i class="fa fa-dashboard"></i> <span>任务中心</span>
+              <i class="fa fa-dashboard"></i> <span>业务中心</span>
               <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
             </a>
             <ul class="treeview-menu">
               <li class="active"><router-link to="/leave"><i class="fa fa-circle-o"></i>请假申请</router-link></li>
+            </ul>
+          </li>
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-dashboard"></i> <span>任务管理</span>
+              <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+            </a>
+            <ul class="treeview-menu">
+              <li class="active"><router-link to="/complete"><i class="fa fa-circle-o"></i>待办任务</router-link></li>
+              <li class="active"><router-link to="/todo"><i class="fa fa-circle-o"></i>已办任务</router-link></li>
             </ul>
           </li>
           <li class="treeview">
@@ -712,8 +725,45 @@
 </template>
 
 <script>
+  import {setCookie,getCookie,delCookie} from './assets/js/cookie'
   export default {
-    name: 'App'
+    name: 'App',
+    methods: {
+      logout(){
+        /*删除cookie*/
+        delCookie('username');
+        axios.post(this.GLOBAL.ProviderUrl + "/logout",this.ruleForm,{emulateJSON:true})
+          .then(res => {
+          if(res.data.success){
+          this.$router.push('/login');
+        }else{
+          layer.msg(res.data.message, {
+            icon: 1,
+            time: 2000 //2秒关闭（如果不配置，默认是3秒）
+          }, function () {
+            //do something
+          });
+        }
+      })
+      .catch(error => {
+        layer.msg(error.message, {
+          icon: 1,
+          time: 2000 //2秒关闭（如果不配置，默认是3秒）
+        }, function () {
+          //do something
+        });
+      });
+      }
+    },
+    /*created(){
+      /!*页面挂载获取保存的cookie值，渲染到页面上*!/
+      let uname = getCookie('username')
+      this.name = uname
+      /!*如果cookie不存在，则跳转到登录页*!/
+      if(uname == ""){
+        this.$router.push('/login')
+      }
+    }*/
   }
 </script>
 

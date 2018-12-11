@@ -8,11 +8,14 @@ import 'element-ui/lib/theme-chalk/index.css';
 // import layer from 'vue-layer'
 
 import App from './App';
-import router from './router';
+import router from './router/index';
+import Global from './Global'
 
 
 Vue.config.productionTip = false;
 Vue.use(ElementUI);
+Vue.prototype.GLOBAL = Global;
+axios.defaults.withCredentials = true
 
 //QS是axios库中带的，不需要我们再npm安装一个
 

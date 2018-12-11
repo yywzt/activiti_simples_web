@@ -38,8 +38,8 @@
             width="360px"
           >
             <template slot-scope="scope">
-              <el-button type="primary" @click="handleDesign(scope.row)" size="mini">提交申请</el-button>
-              <el-button type="info" @click="handleDeployment(scope.row)" size="mini">查看历史批注</el-button>
+              <el-button type="primary" @click="startLeave(scope.row)" v-if="scope.row.state == '0'" size="mini">提交申请</el-button>
+              <el-button type="info" @click="handleViewHisComment(scope.row)" size="mini">查看历史批注</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -53,7 +53,7 @@
             :page-sizes="pageSizes"
             :page-size="pageSize"
             layout="total, sizes, prev, pager, next, jumper"
-            :total="tatal">
+            :total="tatals">
           </el-pagination>
         </div>
       </el-main>
@@ -73,6 +73,14 @@
         <el-button type="primary" @click="add()">确 定</el-button>
       </div>
     </el-dialog>
+
+    <el-dialog title="历史批注" :visible.sync="dialogTableVisible" width="30%">
+      <el-table :data="gridData">
+        <el-table-column property="userId" label="批注人" width="150"></el-table-column>
+        <el-table-column property="message" label="批注信息" width="200"></el-table-column>
+        <el-table-column property="time" label="批注时间"></el-table-column>
+      </el-table>
+    </el-dialog>
   </div>
 </template>
 
@@ -85,14 +93,15 @@
           pageSizes: [10, 20, 50, 100],
           pageSize: 10,
           pageNumber: 1,
-          tatal: 0,
+          tatals: 0,
           dialogFormVisible: false,
           form: {
             leaveDays: '',
             leaveReason: ''
           },
           formLabelWidth: '120px',
-          ProviderUrl: 'http://localhost:18082'
+          gridData: [],
+          dialogTableVisible: false,
         }
       },
       methods: {
@@ -110,30 +119,61 @@
         },
         loadData(pageNumber, pageSize){
           //发送get请求
-          axios.get(this.ProviderUrl + '/processLeave/page',{params:{"pageSize":pageSize,"pageNumber":pageNumber}})
+          axios.get(this.GLOBAL.ProviderUrl + '/processLeave/page',{params:{"pageSize":pageSize,"pageNumber":pageNumber}})
             .then(res => {
-              this.tatal = res.data.data.totalElements;
+              this.tatals = res.data.data.totalElements;
               this.tableData = res.data.data.content;
             })
             .catch(error=> {
-              console.log(error);
+              console.log(error.response.data);
             });
         },
+        //新增申请单
         add(){
-          this.dialogFormVisible = false;
           //发送post请求
-          axios.post(this.ProviderUrl + "/processLeave/newProcessLeave",this.form,{emulateJSON:true})
+          axios.post(this.GLOBAL.ProviderUrl + "/processLeave/newProcessLeave",this.form,{emulateJSON:true})
             .then(res => {
-            this.loadData(this.pageNumber,this.pageSize);
-        })
-        .catch(error => {
-            console.log(error);
-        });
-        }
+              this.dialogFormVisible = false;
+              this.loadData(this.pageNumber,this.pageSize);
+            })
+            .catch(error => {
+                console.log(error.response.data);
+            });
+        },
+        //提交申请单
+        startLeave(row){
+          var leaveId = row.id;
+          var params = new URLSearchParams();
+          params.append("leaveId",leaveId);
+          axios.post(this.GLOBAL.ProviderUrl + "/processLeave/start",params,{emulateJSON:true})
+            .then(res => {
+              if(res.data.success){
+                this.loadData(this.pageNumber,this.pageSize);
+              }else{
+                this.GLOBAL.laymsg(res.data.message);
+              }
+            })
+            .catch(error => {
+                console.log(error.response.data);
+            });
+        },
+        //查看历史流程批注
+        handleViewHisComment(row){
+          this.dialogTableVisible = true;
+          axios.get(this.GLOBAL.ProviderUrl + '/processLeave/showHisComment',{params:{"processInstanceId":row.processInstanceId}})
+            .then(res => {
+            if(res.data.success){
+              this.gridData = res.data.data;
+            }
+          })
+          .catch(error=> {
+              console.log(error.response.data);
+          });
+        },
       },
       created: function () {
         this.loadData(this.pageNumber,this.pageSize);
-      },
+      }
     }
 </script>
 
