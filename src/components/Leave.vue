@@ -40,6 +40,7 @@
             <template slot-scope="scope">
               <el-button type="primary" @click="startLeave(scope.row)" v-if="scope.row.state == '0'" size="mini">提交申请</el-button>
               <el-button type="info" @click="handleViewHisComment(scope.row)" size="mini">查看历史批注</el-button>
+              <el-button type="info" @click="handleViewLeave(scope.row)" size="mini">查看流程</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -168,6 +169,21 @@
           })
           .catch(error=> {
               console.log(error.response.data);
+          });
+        },
+        //
+        handleViewLeave(row){
+          var processInstanceId = row.processInstanceId;
+          var processDefinitionId = row.processDefinitionId;
+          var frameSrc = this.GLOBAL.ProviderUrl + "/diagram-viewer/index.html?processDefinitionId="+ processDefinitionId +"&processInstanceId=" + processInstanceId;
+          var index = layer.open({
+            type: 2,
+            title: '流程监控',
+            maxmin: false,
+            shadeClose: true, //点击遮罩关闭层
+            area : ['100%' , '100%'],
+            content: frameSrc
+
           });
         },
       },

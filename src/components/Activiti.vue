@@ -31,6 +31,7 @@
           <el-table-column
             prop="modelDesc"
             label="流程描述"
+            width="260px"
           >
           </el-table-column>
           <!--<el-table-column

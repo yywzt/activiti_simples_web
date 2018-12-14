@@ -29,10 +29,12 @@
           </el-table-column>
           <el-table-column
             label="操作"
-            width="360px"
+            width="460px"
           >
             <template slot-scope="scope">
-              <el-button type="primary" @click="handleGetLeave(scope.row)" size="mini">办理</el-button>
+              <el-button type="primary" @click="handleClaim(scope.row)" size="mini" v-if="!scope.row.claim">认领任务</el-button>
+              <el-button type="warning" @click="handleBackClaim(scope.row)" size="mini" v-if="scope.row.claim">回退任务</el-button>
+              <el-button type="primary" @click="handleGetLeave(scope.row)" size="mini" v-if="scope.row.claim">办理</el-button>
               <el-button type="info" @click="handleViewHisComment(scope.row)" size="mini">查看历史批注</el-button>
               <el-button type="info" @click="handleListAction(scope.row)" size="mini">流程执行过程</el-button>
             </template>
@@ -216,6 +218,36 @@
             .then(res => {
               if(res.data.success){
                 this.instData = res.data.data;
+              }
+            })
+            .catch(error=> {
+                console.log(error.response.data);
+            });
+        },
+        //任务认领
+        handleClaim(row){
+          axios.get(this.GLOBAL.ProviderUrl + '/task/claim',{params:{"taskId":row.id}})
+            .then(res => {
+              if(res.data.success){
+                this.GLOBAL.laymsg('认领成功');
+                this.loadData(this.pageNumber,this.pageSize);
+              }else{
+                this.GLOBAL.laymsg(res.data.message);
+              }
+            })
+            .catch(error=> {
+                console.log(error.response.data);
+            });
+        },
+        //回退个人任务至组任务
+        handleBackClaim(row){
+          axios.get(this.GLOBAL.ProviderUrl + '/task/backClaim',{params:{"taskId":row.id}})
+            .then(res => {
+              if(res.data.success){
+                this.GLOBAL.laymsg('回退个人任务至组任务成功');
+                this.loadData(this.pageNumber,this.pageSize);
+              }else{
+                this.GLOBAL.laymsg(res.data.message);
               }
             })
             .catch(error=> {
