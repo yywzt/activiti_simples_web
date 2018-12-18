@@ -2,7 +2,7 @@
 
 # activiti_simples_web
 
-#### 后台接口见：https://github.com/yywzt/activiti_samples
+#### 后台接口见：[activiti_samples](https://github.com/yywzt/activiti_samples)
 
 #### activiti流程中心前端页面
 
