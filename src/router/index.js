@@ -6,6 +6,7 @@ import Leave from '@/components/Leave'
 import Login from '@/components/Login.vue'
 import Complete from '@/components/Complete.vue'
 import Todo from '@/components/Todo.vue'
+import Monitor from '@/components/Monitor.vue'
 import { setCookie,getCookie,delCookie } from '../assets/js/cookie.js'
 
 Vue.use(Router)
@@ -42,15 +43,15 @@ const router = new Router({
         requireAuth:true
       }
     },
-    // {
-    //   //流程监控
-    //   path: '/monitor',
-    //   name: 'Monitor',
-    //   component: Monitor,
-    //   meta:{
-    //     requireAuth:true
-    //   }
-    // },
+    {
+      //流程监控
+      path: '/monitor',
+      name: 'Monitor',
+      component: Monitor,
+      meta:{
+        requireAuth:true
+      }
+    },
     {
       //请假单申请
       path: '/leave',
