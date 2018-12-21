@@ -803,5 +803,7 @@
     bottom: 0px;
     right: 0px;
     left: 0px;
+    margin-top: 20px;
   }
+  .el-dialog .el-input,.el-dialog .el-select,.el-dialog .el-textarea{width:300px}
 </style>

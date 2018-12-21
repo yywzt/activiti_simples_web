@@ -6,7 +6,7 @@
         <el-table
           :data="tableData"
           border
-          :row-class-name="tableRowClassName"
+          stripe
         >
           <el-table-column
             prop="id"
@@ -40,7 +40,7 @@
             <template slot-scope="scope">
               <el-button type="primary" @click="startLeave(scope.row)" v-if="scope.row.state == '0'" size="mini">提交申请</el-button>
               <el-button type="info" @click="handleViewHisComment(scope.row)" size="mini">查看历史批注</el-button>
-              <el-button type="info" @click="handleViewLeave(scope.row)" size="mini">查看流程</el-button>
+              <el-button type="info" @click="handleViewLeave(scope.row)" v-if="scope.row.state != '0'" size="mini">查看流程</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -50,9 +50,9 @@
             @current-change="handlePaginationChange"
             @prev-click="handlePaginationChange"
             @next-click="handlePaginationChange"
-            :current-page="pageNumber"
+            :current-page.sync="pageNumber"
             :page-sizes="pageSizes"
-            :page-size="pageSize"
+            :page-size.sync="pageSize"
             layout="total, sizes, prev, pager, next, jumper"
             :total="tatals">
           </el-pagination>
@@ -77,7 +77,7 @@
 
     <el-dialog title="历史批注" :visible.sync="dialogTableVisible" width="30%">
       <el-table :data="gridData">
-        <el-table-column property="userId" label="批注人" width="150"></el-table-column>
+        <el-table-column property="userName" label="批注人" width="150"></el-table-column>
         <el-table-column property="message" label="批注信息" width="200"></el-table-column>
         <el-table-column property="time" label="批注时间"></el-table-column>
       </el-table>
@@ -106,14 +106,6 @@
         }
       },
       methods: {
-        tableRowClassName({row, rowIndex}) {
-          if (rowIndex === 1) {
-            return 'warning-row';
-          } else if (rowIndex === 3) {
-            return 'success-row';
-          }
-          return '';
-        },
         //分页参数变化，重新加载数据
         handlePaginationChange(){
           this.loadData(this.pageNumber,this.pageSize);
@@ -126,7 +118,7 @@
               this.tableData = res.data.data.content;
             })
             .catch(error=> {
-              console.log(error.response.data);
+              console.log(error);
             });
         },
         //新增申请单
@@ -138,7 +130,7 @@
               this.loadData(this.pageNumber,this.pageSize);
             })
             .catch(error => {
-                console.log(error.response.data);
+                console.log(error);
             });
         },
         //提交申请单
@@ -149,13 +141,14 @@
           axios.post(this.GLOBAL.ProviderUrl + "/processLeave/start",params,{emulateJSON:true})
             .then(res => {
               if(res.data.success){
+                this.GLOBAL.openMsg("提交成功",1);
                 this.loadData(this.pageNumber,this.pageSize);
               }else{
-                this.GLOBAL.laymsg(res.data.message);
+                this.GLOBAL.openMsg(res.data.message,3);
               }
             })
             .catch(error => {
-                console.log(error.response.data);
+                console.log(error);
             });
         },
         //查看历史流程批注
@@ -168,7 +161,7 @@
             }
           })
           .catch(error=> {
-              console.log(error.response.data);
+              console.log(error);
           });
         },
         //
@@ -194,14 +187,7 @@
 </script>
 
 <style>
-  .el-table .warning-row {
-    background: oldlace;
-  }
-
-  .el-table .success-row {
-    background: #f0f9eb;
-  }
-  body > .el-container {
+  .el-container {
     margin-bottom: 40px;
   }
 </style>

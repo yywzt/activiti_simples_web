@@ -5,7 +5,7 @@
         <el-table
           :data="tableData"
           border
-          :row-class-name="tableRowClassName"
+          stripe
         >
           <el-table-column
             prop="id"
@@ -46,9 +46,9 @@
             @current-change="handlePaginationChange"
             @prev-click="handlePaginationChange"
             @next-click="handlePaginationChange"
-            :current-page="pageForm.pageNumber"
+            :current-page.sync="pageForm.pageNumber"
             :page-sizes="pageSizes"
-            :page-size="pageForm.pageSize"
+            :page-size.sync="pageForm.pageSize"
             layout="total, sizes, prev, pager, next, jumper"
             :total="tatals">
           </el-pagination>
@@ -58,7 +58,7 @@
 
     <el-dialog title="历史批注" :visible.sync="dialogTableVisible" width="30%">
       <el-table :data="gridData">
-        <el-table-column property="userId" label="批注人" width="150"></el-table-column>
+        <el-table-column property="userName" label="批注人" width="150"></el-table-column>
         <el-table-column property="message" label="批注信息" width="200"></el-table-column>
         <el-table-column property="time" label="批注时间"></el-table-column>
       </el-table>
@@ -139,14 +139,6 @@
         }
       },
       methods: {
-        tableRowClassName({row, rowIndex}) {
-          if (rowIndex === 1) {
-            return 'warning-row';
-          } else if (rowIndex === 3) {
-            return 'success-row';
-          }
-          return '';
-        },
         //分页参数变化，重新加载数据
         handlePaginationChange(){
           this.loadData(this.pageNumber,this.pageSize);
@@ -158,7 +150,7 @@
             this.tableData = res.data.data.rows;
           })
           .catch(error=> {
-              console.log(error.response.data);
+              console.log(error);
           });
         },
         //查询代办请假单详情
@@ -176,7 +168,7 @@
               }
           })
           .catch(error=> {
-              console.log(error.response.data);
+              console.log(error);
           });
         },
         //办理待办任务
@@ -188,14 +180,14 @@
           axios.post(this.GLOBAL.ProviderUrl + '/task/complete',this.completeForm,{emulateJSON:true})
             .then(res => {
               if(res.data.success){
-                this.GLOBAL.laymsg('审批完成');
+                this.GLOBAL.openMsg('审批完成',1);
               }else{
-                this.GLOBAL.laymsg(res.data.message);
+                this.GLOBAL.openMsg(res.data.message,3);
               }
               this.loadData(this.pageNumber,this.pageSize);
           })
           .catch(error=> {
-              console.log(error.response.data);
+              console.log(error);
           });
         },
         //查看历史批注
@@ -208,7 +200,7 @@
               }
             })
             .catch(error=> {
-                console.log(error.response.data);
+                console.log(error);
             });
         },
         //查看流程实例执行过程
@@ -221,7 +213,7 @@
               }
             })
             .catch(error=> {
-                console.log(error.response.data);
+                console.log(error);
             });
         },
         //任务认领
@@ -229,14 +221,14 @@
           axios.get(this.GLOBAL.ProviderUrl + '/task/claim',{params:{"taskId":row.id}})
             .then(res => {
               if(res.data.success){
-                this.GLOBAL.laymsg('认领成功');
+                this.GLOBAL.openMsg('认领成功',1);
                 this.loadData(this.pageNumber,this.pageSize);
               }else{
-                this.GLOBAL.laymsg(res.data.message);
+                this.GLOBAL.openMsg(res.data.message,3);
               }
             })
             .catch(error=> {
-                console.log(error.response.data);
+                console.log(error);
             });
         },
         //回退个人任务至组任务
@@ -244,14 +236,14 @@
           axios.get(this.GLOBAL.ProviderUrl + '/task/backClaim',{params:{"taskId":row.id}})
             .then(res => {
               if(res.data.success){
-                this.GLOBAL.laymsg('回退个人任务至组任务成功');
+                this.GLOBAL.openMsg('回退个人任务至组任务成功',1);
                 this.loadData(this.pageNumber,this.pageSize);
               }else{
-                this.GLOBAL.laymsg(res.data.message);
+                this.GLOBAL.openMsg(res.data.message,3);
               }
             })
             .catch(error=> {
-                console.log(error.response.data);
+                console.log(error);
             });
         },
       },
@@ -262,14 +254,7 @@
 </script>
 
 <style>
-  .el-table .warning-row {
-    background: oldlace;
-  }
-
-  .el-table .success-row {
-    background: #f0f9eb;
-  }
-  body > .el-container {
+  .el-container {
     margin-bottom: 40px;
   }
 </style>

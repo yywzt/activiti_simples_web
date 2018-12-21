@@ -52,12 +52,12 @@
                     setCookie('username',this.ruleForm.username,1000*60)
                     this.$router.push('/');
                   }else{
-                      this.GLOBAL.laymsg(res.data.message);
+                      this.GLOBAL.openMsg(res.data.message,1);
                   }
                 })
                 .catch(error => {
                     console.log(error);
-                    this.GLOBAL.laymsg(error.message);
+                    this.GLOBAL.openMsg(error.message,3);
                 });
             } else {
               console.log('error submit!!');

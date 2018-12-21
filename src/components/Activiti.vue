@@ -6,7 +6,7 @@
         <el-table
           :data="tableData"
           border
-          :row-class-name="tableRowClassName"
+          stripe
         >
           <el-table-column
             prop="modelName"
@@ -94,9 +94,9 @@
             @current-change="handlePaginationChange"
             @prev-click="handlePaginationChange"
             @next-click="handlePaginationChange"
-            :current-page="pageNumber"
+            :current-page.sync="pageNumber"
             :page-sizes="pageSizes"
-            :page-size="pageSize"
+            :page-size.sync="pageSize"
             layout="total, sizes, prev, pager, next, jumper"
             :total="tatals">
           </el-pagination>
@@ -146,14 +146,6 @@
         }
       },
       methods: {
-        tableRowClassName({row, rowIndex}) {
-          if (rowIndex%2 === 0) {
-            return 'warning-row';
-          } else if (rowIndex%2 === 1) {
-            return 'success-row';
-          }
-          return '';
-        },
         handleClick(row) {
           console.log(row);
         },
@@ -205,7 +197,7 @@
             axios.delete(this.GLOBAL.ProviderUrl + "/models/del/" + id)
               .then(res => {
                 layer.close(index2);
-                this.GLOBAL.laymsg('删除好了啊');
+                this.GLOBAL.openMsg('删除好了啊',1);
                 this.loadData(this.pageNumber,this.pageSize);
               })
               .catch(error => {
@@ -241,14 +233,14 @@
             .then(res => {
               layer.close(index2);
               if(res.data.success) {
-                this.GLOBAL.laymsg('发布成功');
+                this.GLOBAL.openMsg('发布成功',1);
               }else{
-                this.GLOBAL.laymsg(res.data.message);
+                this.GLOBAL.openMsg(res.data.message,3);
               }
             })
             .catch(error => {
               layer.close(index2);
-              console.log(error.response.data);
+              console.log(error);
             });
         }
       },
@@ -259,20 +251,6 @@
 </script>
 
 <style>
-  /**{
-    border: null;
-    margin: 0;
-    padding: 0;
-  }*/
-  /*table css*/
-  .el-table .warning-row {
-    background: oldlace;
-  }
-
-  .el-table .success-row {
-    background: #f0f9eb;
-  }
-
   /*container css*/
   .el-header, .el-footer ,.el-menu-demo{
     background-color: #B3C0D1;
@@ -309,7 +287,7 @@
     /*line-height: 160px;*/
   }
 
-  body > .el-container {
+  .el-container {
     margin-bottom: 40px;
   }
 
