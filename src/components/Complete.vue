@@ -132,8 +132,8 @@
             comment: ''
           },
           completeForm: {
-            id: '',
-            comment: '',
+            taskId: '',
+            message: '',
             state: 0
           },
         }
@@ -174,9 +174,9 @@
         //办理待办任务
         handleComplete(state){
           this.dialogFormVisible = false;
-          this.completeForm.id = this.leaveForm.id;
+          this.completeForm.taskId = this.leaveForm.id;
           this.completeForm.state = state;
-          this.completeForm.comment = this.leaveForm.comment;
+          this.completeForm.message = this.leaveForm.comment;
           axios.post(this.GLOBAL.ProviderUrl + '/task/complete',this.completeForm,{emulateJSON:true})
             .then(res => {
               if(res.data.success){
