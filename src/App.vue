@@ -292,209 +292,19 @@
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu" data-widget="tree">
           <li class="header">主导航</li>
-          <li class="treeview">
+          <li class="treeview" v-for="(menu,index) in menus" @click="addMainClass(index)" :class="{active:index==currentIndex}">
             <a href="#">
-              <i class="fa fa-dashboard"></i> <span>仪表盘</span>
+              <i :class="menu.icon"></i> <span>{{ menu.title }}</span>
               <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
             </a>
             <ul class="treeview-menu">
-              <li><router-link to="/index1"><i class="fa fa-circle-o"></i> 仪表盘 v1</router-link></li>
-              <li><router-link to="/index2"><i class="fa fa-circle-o"></i> 仪表盘 v2</router-link></li>
-            </ul>
-          </li>
-          <li class="active treeview">
-            <a href="#">
-              <i class="fa fa-dashboard"></i> <span>流程中心</span>
-              <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-            </a>
-            <ul class="treeview-menu">
-              <li class="active"><router-link to="/activiti"><i class="fa fa-circle-o"></i>流程定义</router-link></li>
-              <li class="active"><router-link to="/monitor"><i class="fa fa-circle-o"></i>流程监控</router-link></li>
-            </ul>
-          </li>
-          <li class="treeview">
-            <a href="#">
-              <i class="fa fa-dashboard"></i> <span>业务中心</span>
-              <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-            </a>
-            <ul class="treeview-menu">
-              <li class="active"><router-link to="/leave"><i class="fa fa-circle-o"></i>请假申请</router-link></li>
-            </ul>
-          </li>
-          <li class="treeview">
-            <a href="#">
-              <i class="fa fa-dashboard"></i> <span>任务管理</span>
-              <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-            </a>
-            <ul class="treeview-menu">
-              <li class="active"><router-link to="/complete"><i class="fa fa-circle-o"></i>待办任务</router-link></li>
-              <li class="active"><router-link to="/todo"><i class="fa fa-circle-o"></i>已办任务</router-link></li>
-            </ul>
-          </li>
-          <li class="treeview">
-            <a href="#">
-              <i class="fa fa-files-o"></i>
-              <span>布局设置</span>
-              <span class="pull-right-container">
-              <span class="label label-primary pull-right">4</span>
-            </span>
-            </a>
-            <ul class="treeview-menu">
-              <li><a href="pages/layout/top-nav.html"><i class="fa fa-circle-o"></i> 顶部导航</a></li>
-              <li><a href="pages/layout/boxed.html"><i class="fa fa-circle-o"></i> 盒子</a></li>
-              <li><a href="pages/layout/fixed.html"><i class="fa fa-circle-o"></i> 固定侧边栏</a></li>
-              <li><a href="pages/layout/collapsed-sidebar.html"><i class="fa fa-circle-o"></i> 折叠侧边栏</a></li>
-            </ul>
-          </li>
-          <!--<li>
-            <a href="pages/widgets.html">
-              <i class="fa fa-th"></i> <span>小部件</span>
-              <span class="pull-right-container">
-              <small class="label pull-right bg-green">新</small>
-            </span>
-            </a>
-          </li>-->
-          <li class="treeview">
-            <a href="#">
-              <i class="fa fa-pie-chart"></i>
-              <span>图表</span>
-              <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-            </a>
-            <ul class="treeview-menu">
-              <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li>
-              <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
-              <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
-              <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> 内嵌式图表</a></li>
-            </ul>
-          </li>
-          <li class="treeview">
-            <a href="#">
-              <i class="fa fa-laptop"></i>
-              <span>UI元素</span>
-              <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-            </a>
-            <ul class="treeview-menu">
-              <li><a href="pages/UI/general.html"><i class="fa fa-circle-o"></i> 常规</a></li>
-              <li><a href="pages/UI/icons.html"><i class="fa fa-circle-o"></i> 图标</a></li>
-              <li><a href="pages/UI/buttons.html"><i class="fa fa-circle-o"></i> 按钮</a></li>
-              <li><a href="pages/UI/sliders.html"><i class="fa fa-circle-o"></i> 滑块</a></li>
-              <li><a href="pages/UI/timeline.html"><i class="fa fa-circle-o"></i> 时间线</a></li>
-              <li><a href="pages/UI/modals.html"><i class="fa fa-circle-o"></i> 弹框</a></li>
-            </ul>
-          </li>
-          <li class="treeview">
-            <a href="#">
-              <i class="fa fa-edit"></i> <span>表单</span>
-              <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-            </a>
-            <ul class="treeview-menu">
-              <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i> 常规元素</a></li>
-              <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i> 高级元素</a></li>
-              <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> 编辑器</a></li>
-            </ul>
-          </li>
-          <li class="treeview">
-            <a href="#">
-              <i class="fa fa-table"></i> <span>表格</span>
-              <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-            </a>
-            <ul class="treeview-menu">
-              <li><a href="pages/tables/simple.html"><i class="fa fa-circle-o"></i> 表格</a></li>
-              <li><a href="pages/tables/data.html"><i class="fa fa-circle-o"></i> 数据表格</a></li>
-            </ul>
-          </li>
-          <!--<li>
-            <a href="pages/calendar.html">
-              <i class="fa fa-calendar"></i> <span>日历</span>
-              <span class="pull-right-container">
-              <small class="label pull-right bg-red">3</small>
-              <small class="label pull-right bg-blue">17</small>
-            </span>
-            </a>
-          </li>
-          <li>
-            <a href="pages/mailbox/mailbox.html">
-              <i class="fa fa-envelope"></i> <span>邮箱</span>
-              <span class="pull-right-container">
-              <small class="label pull-right bg-yellow">12</small>
-              <small class="label pull-right bg-green">16</small>
-              <small class="label pull-right bg-red">5</small>
-            </span>
-            </a>
-          </li>-->
-          <li class="treeview">
-            <a href="#">
-              <i class="fa fa-folder"></i> <span>示例</span>
-              <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-            </a>
-            <ul class="treeview-menu">
-              <li><a href="pages/examples/invoice.html"><i class="fa fa-circle-o"></i> 单据</a></li>
-              <li><a href="pages/examples/profile.html"><i class="fa fa-circle-o"></i> 资料</a></li>
-              <li><a href="pages/examples/login.html"><i class="fa fa-circle-o"></i> 登录</a></li>
-              <li><a href="pages/examples/register.html"><i class="fa fa-circle-o"></i> 注册</a></li>
-              <li><a href="pages/examples/lockscreen.html"><i class="fa fa-circle-o"></i> 锁屏</a></li>
-              <li><a href="pages/examples/404.html"><i class="fa fa-circle-o"></i> 404 错误</a></li>
-              <li><a href="pages/examples/500.html"><i class="fa fa-circle-o"></i> 500 错误</a></li>
-              <li><a href="pages/examples/blank.html"><i class="fa fa-circle-o"></i> 空白页</a></li>
-              <li><a href="pages/examples/pace.html"><i class="fa fa-circle-o"></i> 页面加载进度</a></li>
-            </ul>
-          </li>
-          <!--<li class="treeview">
-            <a href="#">
-              <i class="fa fa-share"></i> <span>多级菜单</span>
-              <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-            </a>
-            <ul class="treeview-menu">
-              <li><a href="#"><i class="fa fa-circle-o"></i> 层级1</a></li>
-              <li class="treeview">
-                <a href="#"><i class="fa fa-circle-o"></i> 层级1
-                  <span class="pull-right-container">
-                  <i class="fa fa-angle-left pull-right"></i>
-                </span>
-                </a>
-                <ul class="treeview-menu">
-                  <li><a href="#"><i class="fa fa-circle-o"></i> 层级2</a></li>
-                  <li class="treeview">
-                    <a href="#"><i class="fa fa-circle-o"></i> 层级2
-                      <span class="pull-right-container">
-                      <i class="fa fa-angle-left pull-right"></i>
-                    </span>
-                    </a>
-                    <ul class="treeview-menu">
-                      <li><a href="#"><i class="fa fa-circle-o"></i> 层级3</a></li>
-                      <li><a href="#"><i class="fa fa-circle-o"></i> 层级3</a></li>
-                    </ul>
-                  </li>
-                </ul>
+              <li v-for="(submenu,subIndex) in menu.submenu" @click="addSubClass(subIndex)" :class="{active: subIndex==subCurrentIndex&&index==currentIndex}">
+                <router-link :to="submenu.url"><i class="fa fa-circle-o"></i>{{submenu.name}}</router-link>
               </li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> 层级1</a></li>
             </ul>
-          </li>-->
-          <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>文档</span></a></li>
-          <!--<li class="header">标签</li>
-          <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>重要</span></a></li>
-          <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>警告</span></a></li>
-          <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>信息</span></a></li>-->
+          </li>
         </ul>
       </section>
       <!-- /.sidebar -->
@@ -728,6 +538,214 @@
   import {setCookie,getCookie,delCookie} from './assets/js/cookie'
   export default {
     name: 'App',
+    data() {
+      return {
+        currentIndex: -1,
+        subCurrentIndex: -1,
+        menus: [
+          {
+            title: "仪表盘",
+            icon: "fa fa-dashboard",
+            submenu: [
+              {
+                name: "仪表盘V1",
+                url: "/index1"
+              },
+              {
+                name: "仪表盘V2",
+                url: "/index2"
+              }
+            ]
+          },
+          {
+            title: "流程中心",
+            icon: "fa fa-dashboard",
+            submenu: [
+              {
+                name: "流程定义",
+                url: "/activiti"
+              },
+              {
+                name: "流程监控",
+                url: "/monitor"
+              }
+            ]
+          },
+          {
+            title: "业务中心",
+            icon: "fa fa-dashboard",
+            submenu: [
+              {
+                name: "请假申请",
+                url: "/leave"
+              }
+            ]
+          },
+          {
+            title: "任务管理",
+            icon: "fa fa-dashboard",
+            submenu: [
+              {
+                name: "待办任务",
+                url: "/complete"
+              },
+              {
+                name: "已办任务",
+                url: "/todo"
+              }
+            ]
+          },
+          {
+            title: "布局设置",
+            icon: "fa fa-files-o",
+            submenu: [
+              {
+                name: "顶部导航",
+                url: "pages/layout/top-nav.html"
+              },
+              {
+                name: "盒子",
+                url: "pages/layout/boxed.html"
+              },
+              {
+                name: "固定侧边栏",
+                url: "pages/layout/fixed.html"
+              },
+              {
+                name: "折叠侧边栏",
+                url: "pages/layout/collapsed-sidebar.html"
+              }
+            ]
+          },
+          {
+            title: "图表",
+            icon: "fa fa-pie-chart",
+            submenu: [
+              {
+                name: "ChartJS",
+                url: "pages/charts/chartjs.html"
+              },
+              {
+                name: "Morris",
+                url: "pages/charts/morris.html"
+              },
+              {
+                name: "Flot",
+                url: "pages/charts/flot.html"
+              },
+              {
+                name: "内嵌式图表",
+                url: "pages/charts/inline.html"
+              }
+            ]
+          },
+          {
+            title: "UI元素",
+            icon: "fa fa-laptop",
+            submenu: [
+              {
+                name: "常规",
+                url: "pages/UI/general.html"
+              },
+              {
+                name: "图标",
+                url: "pages/UI/icons.html"
+              },
+              {
+                name: "按钮",
+                url: "pages/UI/buttons.html"
+              },
+              {
+                name: "滑块",
+                url: "pages/UI/sliders.html"
+              },
+              {
+                name: "时间线",
+                url: "pages/UI/timeline.html"
+              },
+              {
+                name: "弹框",
+                url: "pages/UI/modals.html"
+              }
+            ]
+          },
+          {
+            title: "表单",
+            icon: "fa fa-edit",
+            submenu: [
+              {
+                name: "常规元素",
+                url: "pages/forms/general.html"
+              },
+              {
+                name: "高级元素",
+                url: "pages/forms/advanced.html"
+              },
+              {
+                name: "编辑器",
+                url: "pages/forms/editors.html"
+              }
+            ]
+          },
+          {
+            title: "表格",
+            icon: "fa fa-table",
+            submenu: [
+              {
+                name: "表格",
+                url: "pages/tables/simple.html"
+              },
+              {
+                name: "数据表格",
+                url: "pages/tables/data.html"
+              }
+            ]
+          },
+          {
+            title: "示例",
+            icon: "fa fa-folder",
+            submenu: [
+              {
+                name: "单据",
+                url: "pages/examples/invoice.html"
+              },
+              {
+                name: "资料",
+                url: "pages/examples/profile.html"
+              },
+              {
+                name: "登录",
+                url: "pages/examples/login.html"
+              },
+              {
+                name: "注册",
+                url: "pages/examples/register.html"
+              },
+              {
+                name: "锁屏",
+                url: "pages/examples/lockscreen.html"
+              },
+              {
+                name: "404 错误",
+                url: "pages/examples/404.html"
+              },
+              {
+                name: "500 错误",
+                url: "pages/examples/500.html"
+              },
+              {
+                name: "空白页",
+                url: "pages/examples/blank.html"
+              },
+              {
+                name: "页面加载进度",
+                url: "pages/examples/pace.html"
+              }
+            ]
+          },
+        ]
+      }
+    },
     methods: {
       logout(){
         /*删除cookie*/
@@ -753,17 +771,16 @@
           //do something
         });
       });
-      }
-    },
-    /*created(){
-      /!*页面挂载获取保存的cookie值，渲染到页面上*!/
-      let uname = getCookie('username')
-      this.name = uname
-      /!*如果cookie不存在，则跳转到登录页*!/
-      if(uname == ""){
-        this.$router.push('/login')
-      }
-    }*/
+      },
+      addMainClass(index){
+        console.log(index)
+        this.currentIndex = index;
+      },
+      addSubClass(index){
+        console.log(index)
+        this.subCurrentIndex = index;
+      },
+    }
   }
 </script>
 

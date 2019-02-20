@@ -18,7 +18,7 @@ const router = new Router({
       name: 'HelloWorld',
       component: HelloWorld,
       meta:{
-        requireAuth:true
+        requireAuth:false
       }
     },
     {
@@ -26,7 +26,7 @@ const router = new Router({
       name: 'index1',
       component: {template:'<div>index1-haahahha</div>'},
       meta:{
-        requireAuth:true
+        requireAuth:false
       }
     },
     {
@@ -93,8 +93,14 @@ router.beforeEach((to, from, next) => {
       })
     }
   } else {
-    next()
-  }
+    next();
+  };
+  activeli(to.fullPath);
 })
+
+function activeli(path) {
+  console.log(path)
+
+}
 
 export default router
