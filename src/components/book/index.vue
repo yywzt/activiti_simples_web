@@ -13,19 +13,19 @@
 </template>
 
 <script>
-    export default {
-      name: "index",
-      data(){
-          return {
-            activeName: 'second'
-          };
-      },
-      methods: {
-        handleClick(tab, event) {
-          console.log(tab, event);
-        }
+  export default {
+    name: "index",
+    data(){
+      return {
+        activeName: 'second'
+      };
+    },
+    methods: {
+      handleClick(tab, event) {
+        console.log(tab, event);
       }
     }
+  }
 </script>
 
 <style scoped>
