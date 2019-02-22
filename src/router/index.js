@@ -7,6 +7,7 @@ import Login from '@/components/Login.vue'
 import Complete from '@/components/Complete.vue'
 import Todo from '@/components/Todo.vue'
 import Monitor from '@/components/Monitor.vue'
+import index from '@/components/book/index.vue'
 import { setCookie,getCookie,delCookie } from '../assets/js/cookie.js'
 
 Vue.use(Router)
@@ -77,6 +78,15 @@ const router = new Router({
       component: Todo,
       meta:{
         requireAuth:true
+      }
+    },
+    {
+      //book index
+      path: '/book/index',
+      name: 'index',
+      component: index,
+      meta:{
+        requireAuth:false
       }
     }
   ]

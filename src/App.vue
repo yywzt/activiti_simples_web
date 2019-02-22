@@ -596,6 +596,16 @@
             ]
           },
           {
+            title: "图书",
+            icon: "fa fa-book",
+            submenu: [
+              {
+                name: "图书首页",
+                url: "/book/index"
+              }
+            ]
+          },
+          {
             title: "布局设置",
             icon: "fa fa-files-o",
             submenu: [
